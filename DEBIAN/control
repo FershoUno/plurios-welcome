@@ -1,0 +1,12 @@
+Package: CHANGE_NAME
+Version: CHANGE_VERSION
+Architecture: CHANGE_ARCH
+Maintainer: CHANGE_MAINTAINER
+Installed-Size: CHANGE_SIZE
+Section: CHANGE_SECTION
+Priority: optional
+Homepage: https://github.com/FershoUno/plurios-welcome
+Description: PluriOS Welcome HTML
+ Provides the HTML content for the PluriOS welcome page, presenting a
+ brief overview of the project, its goals, and key features. This package
+ is used by plurios-firefox-profiles to display the welcome interface.

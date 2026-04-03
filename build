@@ -1,0 +1,42 @@
+#!/bin/bash
+# Author: @FershoUno
+
+### CONFIG ###
+NAME="plurios-welcome"
+VERSION="0.0.1"
+ARCH="all"
+MAINTAINER="Fersho Uno <fersh0un0@gmail.com>"
+SECTION="web"
+
+WORKDIR="${NAME}_${VERSION}_${ARCH}"
+
+### LIMPIEZA ###
+rm -rf "$WORKDIR" "$SRC_DIR" *.deb 2>/dev/null
+
+### CREAR WORKDIR
+
+mkdir -p $WORKDIR
+
+### COPIAR DEBIAN ###
+cp -r DEBIAN "$WORKDIR/"
+cp -r usr/ "$WORKDIR/"
+
+### ACTUALIZAR CONTROL ###
+SIZE=$(du -ks --exclude=DEBIAN "$WORKDIR" | awk '{print $1}')
+
+sed -i "s/CHANGE_NAME/$NAME/g" "$WORKDIR/DEBIAN/control"
+sed -i "s/CHANGE_VERSION/$VERSION/g" "$WORKDIR/DEBIAN/control"
+sed -i "s/CHANGE_ARCH/$ARCH/g" "$WORKDIR/DEBIAN/control"
+sed -i "s/CHANGE_MAINTAINER/$MAINTAINER/g" "$WORKDIR/DEBIAN/control"
+sed -i "s/CHANGE_SECTION/$SECTION/g" "$WORKDIR/DEBIAN/control"
+sed -i "s/CHANGE_SIZE/$SIZE/g" "$WORKDIR/DEBIAN/control"
+
+### PERMISOS
+
+find "$WORKDIR" -type d -exec chmod 755 {} +
+find "$WORKDIR" -type f -exec chmod 644 {} +
+
+### BUILD CON FAKEROOT ###
+fakeroot dpkg-deb --build "$WORKDIR"
+
+echo "✔ Paquete generado: ${WORKDIR}.deb"
