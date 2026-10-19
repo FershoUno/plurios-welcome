@@ -3,142 +3,293 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PluriOS — Sistema operativo libre y comunitario inspirado en la diversidad cultural y tecnológica de Bolivia." />
+  <meta name="color-scheme" content="dark" />
   <title>PluriOS – Gracias por Descargar</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
   <style>
+    /* ============================================================
+       PluriOS Welcome — tema oscuro grafito / azul petróleo
+       Sin dependencias externas: tipografía de sistema, sin CDN.
+       ============================================================ */
+
     :root {
-      --bolivia-red: #d52b1e;
-      --bolivia-yellow: #fcd116;
-      --bolivia-green: #007934;
-      --dark: #0f172a;
-      --light: #f8fafc;
+      /* Superficies */
+      --bg:            #0e141a;
+      --bg-elevated:   #141c23;
+      --surface:       #18212a;
+      --surface-hover: #1d2833;
+
+      /* Bordes */
+      --border:        #26333f;
+      --border-strong: #334553;
+
+      /* Texto */
+      --text:          #e8eef3;
+      --text-muted:    #a3b3c0;
+      --text-faint:    #7e909e;
+
+      /* Acento turquesa / cian */
+      --accent:        #3ec9c0;
+      --accent-strong: #5fdcd4;
+      --accent-dim:    rgba(62, 201, 192, 0.12);
+
+      /* Estados */
+      --focus-ring:    #5fdcd4;
+
+      /* Tipografía */
+      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto,
+                   "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+      /* Radios, sombras y espaciado */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+
+      /* Transiciones */
+      --transition-fast: 140ms ease;
+      --transition-med:  220ms ease;
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
-      background: linear-gradient(135deg, var(--bolivia-red), var(--bolivia-yellow), var(--bolivia-green));
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
       min-height: 100vh;
-      color: var(--light);
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      overflow-wrap: break-word;
     }
 
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Foco visible y consistente en todos los elementos interactivos */
+    :focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
     }
+
+    /* ---------- Cabecera ---------- */
 
     header {
-      padding: 3rem 1rem;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-5) var(--space-4);
       text-align: center;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(8px);
     }
 
     header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
       font-weight: 700;
-      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: var(--space-2);
     }
 
     header h1 span {
-      color: var(--bolivia-yellow);
+      color: var(--accent);
     }
 
     header p {
-      max-width: 720px;
+      max-width: 640px;
       margin: 0 auto;
-      font-size: 1.1rem;
-      opacity: 0.95;
+      font-size: 0.95rem;
+      color: var(--text-muted);
     }
+
+    /* ---------- Contenido principal ---------- */
 
     main {
-      padding: 4rem 1rem;
-      max-width: 1200px;
-      margin: auto;
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-5) var(--space-4);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 2rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.35);
-    }
-
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.8rem;
-      color: var(--bolivia-yellow);
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      opacity: 0.95;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
     }
 
     section.hero-message {
-      grid-column: 1 / -1;
       text-align: center;
-      margin-bottom: 2rem;
+      padding: var(--space-3) 0 var(--space-2);
     }
 
     section.hero-message h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
       font-weight: 600;
-      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-bottom: var(--space-2);
     }
 
     section.hero-message h2 span {
-      color: var(--bolivia-yellow);
+      color: var(--accent-strong);
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: rgba(15, 23, 42, 0.8);
+    section.hero-message p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Tarjetas ---------- */
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      box-shadow: var(--shadow-sm);
+      transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .card:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card h3 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+      color: var(--text);
+    }
+
+    /* Indicador discreto junto a los títulos de tarjeta */
+    .card h3::before {
+      content: "";
+      flex: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.85;
+    }
+
+    .card p {
       font-size: 0.9rem;
-      opacity: 0.9;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Pie ---------- */
+
+    footer {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: var(--space-4);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-faint);
     }
 
     footer strong {
-      color: var(--bolivia-yellow);
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
-    /* Decorative Andean pattern */
+    /* ---------- Franja decorativa andina (sutil) ---------- */
+
     .andean {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 80px;
+      height: 4px;
       background: repeating-linear-gradient(
-        45deg,
-        rgba(255,255,255,0.15) 0,
-        rgba(255,255,255,0.15) 10px,
-        rgba(0,0,0,0) 10px,
-        rgba(0,0,0,0) 20px
+        90deg,
+        var(--accent) 0,
+        var(--accent) 12px,
+        transparent 12px,
+        transparent 24px
       );
+      opacity: 0.35;
       pointer-events: none;
+    }
+
+    /* ---------- Entrada animada del mensaje principal ---------- */
+
+    .hero-enter {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .hero-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    /* ---------- Adaptación a diferentes pantallas ---------- */
+
+    @media (min-width: 600px) {
+      main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-5);
+      }
+
+      section.hero-message {
+        grid-column: 1 / -1;
+        padding-top: var(--space-4);
+      }
+    }
+
+    @media (min-width: 960px) {
+      header {
+        padding: var(--space-6) var(--space-4);
+      }
+
+      main {
+        padding: var(--space-6) var(--space-4);
+      }
+    }
+
+    /* ---------- Accesibilidad: movimiento reducido ---------- */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .hero-enter,
+      .hero-enter-active {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
@@ -146,53 +297,57 @@
 
   <header>
     <h1>Pluri<span>OS</span></h1>
-    <p>Sistema operativo libre, comunitario y orgullosamente inspirado en la diversidad cultural y tecnológica de Bolivia 🇧🇴</p>
+    <p>Sistema operativo libre, comunitario y orgullosamente inspirado en la diversidad cultural y tecnológica de Bolivia.</p>
   </header>
 
   <main>
     <section class="hero-message">
-      <h2>✨ <span>Gracias por Descargar PluriOS</span> ✨</h2>
+      <h2><span>Gracias por Descargar PluriOS</span></h2>
       <p>Tu apoyo impulsa un ecosistema abierto, soberano y pensado para nuestra región.</p>
     </section>
 
     <div class="card">
-      <h3>🇧🇴 Inspirado en Bolivia</h3>
+      <h3>Inspirado en Bolivia</h3>
       <p>PluriOS toma su identidad de la riqueza cultural, el espíritu comunitario y la diversidad del Estado Plurinacional de Bolivia.</p>
     </div>
 
     <div class="card">
-      <h3>🛡️ Libre y Seguro</h3>
+      <h3>Libre y Seguro</h3>
       <p>Basado en software libre, con enfoque en privacidad, control del sistema y transparencia total.</p>
     </div>
 
     <div class="card">
-      <h3>⚙️ Diseñado para Aprender</h3>
+      <h3>Diseñado para Aprender</h3>
       <p>Ideal para estudiantes, técnicos y entusiastas que quieren entender cómo funciona GNU/Linux desde dentro.</p>
     </div>
 
     <div class="card">
-      <h3>🚀 Comunidad y Futuro</h3>
+      <h3>Comunidad y Futuro</h3>
       <p>PluriOS crece con su comunidad. Cada descarga, prueba o aporte construye el futuro del proyecto.</p>
     </div>
   </main>
 
   <footer>
-    <p>Hecho con ❤️ y software libre · <strong>PluriOS</strong> · Bolivia</p>
+    <p>Hecho con software libre · <strong>PluriOS</strong> · Bolivia</p>
   </footer>
 
   <div class="andean"></div>
 
   <script>
-    // Animación simple de bienvenida
+    // Animación simple de bienvenida (respeta preferencias de movimiento reducido)
     document.addEventListener('DOMContentLoaded', () => {
       const title = document.querySelector('section.hero-message h2');
-      title.style.opacity = 0;
-      title.style.transform = 'translateY(20px)';
+      if (!title) return;
+
+      const reducedMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reducedMotion) return;
+
+      title.classList.add('hero-enter');
 
       setTimeout(() => {
-        title.style.transition = 'all 1s ease';
-        title.style.opacity = 1;
-        title.style.transform = 'translateY(0)';
+        title.classList.add('hero-enter-active');
       }, 300);
     });
   </script>
