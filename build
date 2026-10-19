@@ -3,7 +3,7 @@
 
 ### CONFIG ###
 NAME="plurios-welcome"
-VERSION="0.0.1"
+VERSION="0.0.2"
 ARCH="all"
 MAINTAINER="Fersho Uno <fersh0un0@gmail.com>"
 SECTION="web"
